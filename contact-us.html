@@ -94,58 +94,64 @@
     </div>
 
 
-         
-    </section>
     <div class="contact-text">
         <h2>We are dedicated to fulfilling all your needs.</h2>
         <p>For all event inquiries and additional booking details, please send us a message below.</p>
     </div>
 
-    <div class="contact-info">
-        <h3 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Send us a message</h3>
-    <div class="details"> 
-        <label for="name">First Name</label>
-      <input type="text" class="form-control" placeholder="" aria-label="First name" required>
-    </div>
-   
-    <div class="details">
-        <label for="name">Last Name</label>
-      <input type="text" class="form-control" placeholder="" aria-label="Last name" required>
-    </div>
     
-    <div class="details">
-        <label for="email">Email Address</label>
-      <input type="email" class="form-control" placeholder="" aria-label="enter your email" required>
-    </div>
-   
-    <div class="details">
-        <label for="number">Phone number</label>
-      <input type="number" class="form-control" placeholder="" aria-label="" required>
-    </div>
-    
-    <div class="col-auto" style="padding-top: 10px; width: 70%; padding-bottom: 10px;">
-        <label for="Preference">Services</label>
-        <label class="visually-hidden" for="autoSizingSelect">Preference</label>
-        <select class="form-select" id="autoSizingSelect">
-          <option id="opt" selected onclick="
-            ">Real Estate Management</option>
-          <option value="1">Events</option>
-          <option value="2">Home Interior</option>
-          <option value="3">Reservation</option>
-          <option value="3">Promotions</option>
-        </select>
-      </div>
-
-      <div class="details">
-        <!-- <form action="https://formsubmit.co/honeyhospitalityorg@gmail.com" method="POST" id="contact-form" data-formsubmit-ajax> -->
-           <textarea name="message" id="listmessage"  placeholder="Enter Message..." rows="4" style="outline: none; border: none;"></textarea ><br>
-           <button type="submit" id="submit" >Send Message</button>
-           <p id="message-status"></p>
+    <section class="reservation-form-section" style="display: block;">
+      <div class="container" style="display: flex;
+      justify-content: center;
+      align-items: center;">
+        <div class="reservation-card" data-aos="fade-up">
+          <h2>Send us a Message</h2>
+        <form id="contactForm" action="https://formsubmit.co/balogunj777@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_subject" value="New website message">
+        
+          <input type="text" name="name" placeholder="Your Name" required><br>
+          <input type="email" name="email" placeholder="Your Email" required><br>
+          <input type="number" name="number" placeholder="Enter Your Number" required><br>
+          <input type="text" name="Service" placeholder="Service Type"><br>
+          <input type="date" name="Date" placeholder=""><br>
+          <textarea name="message" placeholder="Your Message" required></textarea><br>
+          <button type="submit">Send</button>
         </form>
-     </div>
+        
+        <div id="statusMessage"></div>
+      </div>
+    </div>
 
-     </div>
-
+        
+        <script>
+          const form = document.getElementById("contactForm");
+          const status = document.getElementById("statusMessage");
+        
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+        
+            fetch(form.action, {
+              method: "POST",
+              body: formData,
+              headers: {
+                'Accept': 'application/json'
+              }
+            }).then(response => {
+              if (response.ok) {
+                status.innerHTML = "✅ Message sent!";
+                form.reset();
+              } else {
+                status.innerHTML = "❌ Something went wrong.";
+              }
+            }).catch(error => {
+              status.innerHTML = "❌ Failed to send message.";
+            });
+          });
+        </script>
+      
      <div class="map-container">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.7834402528315!2d3.235118673546788!3d6.549004722869438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b853f9cb14475%3A0xc96b679d4e917aad!2s12%20Lasu-Isheri%20Rd%2C%20Ijegun%2C%20Lagos%20102213%2C%20Lagos!5e0!3m2!1sen!2sng!4v1746710321690!5m2!1sen!2sng" 
       style="border:0;" 
@@ -154,7 +160,6 @@
       referrerpolicy="no-referrer-when-downgrade">
       </iframe>
      </div>
-
      
 
      <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
